@@ -94,7 +94,25 @@ add_user_to_docker_group() {
 EONG
 }
 
+# Function to install additional software
+install_additional_software() {
+    echo "Installing additional software..."
+
+    sudo apt update
+    sudo apt upgrade -y
+    sudo apt install --no-install-recommends -y build-essential nvidia-driver-535 nvidia-headless-535 nvidia-utils-535 nvidia-cuda-toolkit
+    sudo apt install net-tools -y
+    sudo apt install openssh-server -y
+    sudo apt-get install ca-certificates curl -y
+
+    # Start SSH service
+    sudo systemctl start ssh
+}
+
 # Main script logic
+# Install additional software
+install_additional_software
+
 if check_docker; then
     upgrade_docker
 else
@@ -106,3 +124,5 @@ install_or_upgrade_docker_compose
 
 # Add the current user to the docker group
 add_user_to_docker_group
+
+echo "All tasks completed successfully."
