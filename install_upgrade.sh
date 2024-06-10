@@ -102,11 +102,11 @@ install_additional_software() {
     sudo apt upgrade -y
     sudo apt install --no-install-recommends -y build-essential nvidia-driver-535 nvidia-headless-535 nvidia-utils-535 nvidia-cuda-toolkit
     sudo apt install net-tools -y
-    sudo apt install openssh-server -y
-    sudo apt-get install ca-certificates curl -y
+    #sudo apt install openssh-server -y
+    #sudo apt-get install ca-certificates curl -y
 
     # Start SSH service
-    sudo systemctl start ssh
+    #sudo systemctl start ssh
 }
 
 # Main script logic
