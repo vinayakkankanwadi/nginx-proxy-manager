@@ -37,7 +37,6 @@ mount_nfs_share() {
   echo "NFS share added to /etc/fstab for persistent mount"
 }
 
-
 # Function to configure Docker to use the NFS mount for its data storage
 configure_docker() {
   # Stop Docker service and Docker socket
@@ -45,18 +44,27 @@ configure_docker() {
   sudo systemctl stop docker.socket
   sleep 5  # Wait for a few seconds to ensure Docker has stopped
 
+  # Check if Docker is still running and force stop if necessary
+  if systemctl is-active --quiet docker; then
+    sudo systemctl kill docker
+    sleep 5
+  fi
+
+  # Ensure all Docker processes are stopped
+  sudo pkill -f docker
+
   # Create Docker data directory if it doesn't exist
   if [ ! -d "$DOCKER_DATA_DIR" ]; then
     sudo mkdir -p "$DOCKER_DATA_DIR"
   fi
 
   # Set ownership and permissions on the Docker directory
-  sudo chown -R $DOCKER_USER:$DOCKER_USER "$DOCKER_DATA_DIR"
+  sudo chown -R $DOCKER_USER:$DOCKER_USER "$DOCKER_DATA_DIR" || sudo chown -R nobody:nogroup "$DOCKER_DATA_DIR"
   sudo chmod -R 755 "$DOCKER_DATA_DIR"
 
   # Move existing Docker data to NFS share (optional)
   if [ -d "/var/lib/docker" ]; then
-    sudo rsync -aP --chown=$DOCKER_USER:$DOCKER_USER /var/lib/docker/ "$DOCKER_DATA_DIR/"
+    sudo rsync -aP --chown=$DOCKER_USER:$DOCKER_USER /var/lib/docker/ "$DOCKER_DATA_DIR/" || sudo rsync -aP /var/lib/docker/ "$DOCKER_DATA_DIR/"
   fi
 
   # Update Docker daemon configuration
@@ -65,6 +73,10 @@ configure_docker() {
   echo "{
     \"data-root\": \"$DOCKER_DATA_DIR\"
   }" | sudo tee "$DOCKER_CONFIG_FILE"
+
+  # Set correct ownership and permissions for daemon.json
+  sudo chown $DOCKER_USER:$DOCKER_USER "$DOCKER_CONFIG_FILE"
+  sudo chmod 644 "$DOCKER_CONFIG_FILE"
 
   # Start Docker service and Docker socket
   sudo systemctl start docker
