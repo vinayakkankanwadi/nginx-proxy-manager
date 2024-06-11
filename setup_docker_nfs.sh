@@ -37,10 +37,12 @@ mount_nfs_share() {
   echo "NFS share added to /etc/fstab for persistent mount"
 }
 
+
 # Function to configure Docker to use the NFS mount for its data storage
 configure_docker() {
-  # Stop Docker service
+  # Stop Docker service and Docker socket
   sudo systemctl stop docker
+  sudo systemctl stop docker.socket
   sleep 5  # Wait for a few seconds to ensure Docker has stopped
 
   # Check if Docker is still running and force stop if necessary
@@ -73,8 +75,9 @@ configure_docker() {
     \"data-root\": \"$DOCKER_DATA_DIR\"
   }" | sudo tee "$DOCKER_CONFIG_FILE"
 
-  # Start Docker service
+  # Start Docker service and Docker socket
   sudo systemctl start docker
+  sudo systemctl start docker.socket
 
   # Verify Docker configuration
   if docker info | grep -q "Docker Root Dir: $DOCKER_DATA_DIR"; then
