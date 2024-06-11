@@ -46,6 +46,10 @@ configure_docker() {
     sudo mkdir -p "$DOCKER_DATA_DIR"
   fi
 
+  # Set ownership and permissions on the Docker directory
+  sudo chown -R ubuntu22:ubuntu22 "$DOCKER_DATA_DIR"
+  sudo chmod -R 755 "$DOCKER_DATA_DIR"
+
   # Move existing Docker data to NFS share (optional)
   if [ -d "/var/lib/docker" ]; then
     sudo rsync -aP /var/lib/docker/ "$DOCKER_DATA_DIR/"
@@ -66,6 +70,7 @@ configure_docker() {
     echo "Docker successfully configured to use $DOCKER_DATA_DIR"
   else
     echo "Failed to configure Docker to use $DOCKER_DATA_DIR"
+    sudo journalctl -u docker.service
     exit 1
   fi
 }
