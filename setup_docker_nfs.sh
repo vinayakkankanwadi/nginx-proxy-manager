@@ -2,7 +2,7 @@
 
 # Variables
 NFS_SERVER="192.168.0.233"  # Replace with your Synology NAS IP address
-NFS_SHARE="docker"  # Replace with the path to your NFS share
+NFS_SHARE="/volume1/docker"  # Replace with the path to your NFS share
 MOUNT_POINT="/mnt"  # Replace with your desired mount point
 DOCKER_DATA_DIR="$MOUNT_POINT/docker"
 
