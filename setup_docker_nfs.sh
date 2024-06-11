@@ -41,9 +41,22 @@ mount_nfs_share() {
 configure_docker() {
   # Stop Docker service
   sudo systemctl stop docker
+  sleep 5  # Wait for a few seconds to ensure Docker has stopped
+
+  # Check if Docker is still running and force stop if necessary
+  if systemctl is-active --quiet docker; then
+    sudo systemctl kill docker
+    sleep 5
+  fi
+
+  # Ensure all Docker processes are stopped
+  sudo pkill -f docker
+
+  # Create Docker data directory if it doesn't exist
   if [ ! -d "$DOCKER_DATA_DIR" ]; then
     sudo mkdir -p "$DOCKER_DATA_DIR"
   fi
+
   # Set ownership and permissions on the Docker directory
   sudo chown -R $DOCKER_USER:$DOCKER_USER "$DOCKER_DATA_DIR"
   sudo chmod -R 755 "$DOCKER_DATA_DIR"
