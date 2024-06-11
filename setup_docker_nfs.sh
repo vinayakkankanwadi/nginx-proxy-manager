@@ -10,7 +10,7 @@ DOCKER_USER="ubuntu22"  # User under which Docker should run
 # Function to install necessary packages
 install_packages() {
   sudo apt update
-  sudo apt install -y nfs-common
+  sudo apt install -y nfs-common fuse-overlayfs
 }
 
 # Function to mount the NFS share
@@ -44,15 +44,6 @@ configure_docker() {
   sudo systemctl stop docker.socket
   sleep 5  # Wait for a few seconds to ensure Docker has stopped
 
-  # Check if Docker is still running and force stop if necessary
-  if systemctl is-active --quiet docker; then
-    sudo systemctl kill docker
-    sleep 5
-  fi
-
-  # Ensure all Docker processes are stopped
-  sudo pkill -f docker
-
   # Create Docker data directory if it doesn't exist
   if [ ! -d "$DOCKER_DATA_DIR" ]; then
     sudo mkdir -p "$DOCKER_DATA_DIR"
@@ -71,7 +62,8 @@ configure_docker() {
   DOCKER_CONFIG_FILE="/etc/docker/daemon.json"
   sudo mkdir -p "$(dirname "$DOCKER_CONFIG_FILE")"
   echo "{
-    \"data-root\": \"$DOCKER_DATA_DIR\"
+    \"data-root\": \"$DOCKER_DATA_DIR\",
+    \"storage-driver\": \"fuse-overlayfs\"
   }" | sudo tee "$DOCKER_CONFIG_FILE"
 
   # Set correct ownership and permissions for daemon.json
@@ -83,10 +75,10 @@ configure_docker() {
   sudo systemctl start docker.socket
 
   # Verify Docker configuration
-  if docker info | grep -q "Docker Root Dir: $DOCKER_DATA_DIR"; then
-    echo "Docker successfully configured to use $DOCKER_DATA_DIR"
+  if docker info | grep -q "Storage Driver: fuse-overlayfs"; then
+    echo "Docker successfully configured to use fuse-overlayfs"
   else
-    echo "Failed to configure Docker to use $DOCKER_DATA_DIR"
+    echo "Failed to configure Docker to use fuse-overlayfs"
     sudo journalctl -u docker.service
     exit 1
   fi
