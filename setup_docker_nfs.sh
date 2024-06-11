@@ -51,6 +51,7 @@ configure_docker() {
   # Move existing Docker data to NFS share (optional)
   if [ -d "/var/lib/docker" ]; then
     sudo rsync -aP /var/lib/docker/ "$DOCKER_DATA_DIR/"
+    sudo chown -R $DOCKER_USER:$DOCKER_USER "$DOCKER_DATA_DIR"
   fi
 
   # Update Docker daemon configuration
