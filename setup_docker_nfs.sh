@@ -42,7 +42,7 @@ configure_docker() {
   # Stop Docker service
   sudo systemctl stop docker
   if [ ! -d "$DOCKER_DATA_DIR" ]; then
-  sudo mkdir -p "$DOCKER_DATA_DIR"
+    sudo mkdir -p "$DOCKER_DATA_DIR"
   fi
   # Set ownership and permissions on the Docker directory
   sudo chown -R $DOCKER_USER:$DOCKER_USER "$DOCKER_DATA_DIR"
@@ -50,8 +50,7 @@ configure_docker() {
 
   # Move existing Docker data to NFS share (optional)
   if [ -d "/var/lib/docker" ]; then
-    sudo rsync -aP /var/lib/docker/ "$DOCKER_DATA_DIR/"
-    sudo chown -R $DOCKER_USER:$DOCKER_USER "$DOCKER_DATA_DIR"
+    sudo rsync -aP --chown=$DOCKER_USER:$DOCKER_USER /var/lib/docker/ "$DOCKER_DATA_DIR/"
   fi
 
   # Update Docker daemon configuration
