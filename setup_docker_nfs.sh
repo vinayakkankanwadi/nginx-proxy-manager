@@ -5,6 +5,7 @@ NFS_SERVER="192.168.0.233"  # Replace with your Synology NAS IP address
 NFS_SHARE="/volume1/docker"  # Replace with the path to your NFS share
 MOUNT_POINT="/mnt"  # Replace with your desired mount point
 DOCKER_DATA_DIR="$MOUNT_POINT/docker"
+DOCKER_USER="ubuntu22"  # User under which Docker should run
 
 # Function to install necessary packages
 install_packages() {
@@ -47,7 +48,7 @@ configure_docker() {
   fi
 
   # Set ownership and permissions on the Docker directory
-  sudo chown -R ubuntu22:ubuntu22 "$DOCKER_DATA_DIR"
+  sudo chown -R $DOCKER_USER:$DOCKER_USER "$DOCKER_DATA_DIR"
   sudo chmod -R 755 "$DOCKER_DATA_DIR"
 
   # Move existing Docker data to NFS share (optional)
