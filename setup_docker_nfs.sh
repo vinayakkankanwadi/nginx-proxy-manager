@@ -18,6 +18,9 @@ mount_nfs_share() {
   # Create mount point if it doesn't exist
   if [ ! -d "$MOUNT_POINT" ]; then
     sudo mkdir -p "$MOUNT_POINT"
+    # Set ownership and permissions on the Docker directory
+    sudo chown -R $DOCKER_USER:$DOCKER_USER "$DOCKER_DATA_DIR"
+    sudo chmod -R 755 "$DOCKER_DATA_DIR"
   fi
 
   # Mount the NFS share
@@ -41,15 +44,6 @@ mount_nfs_share() {
 configure_docker() {
   # Stop Docker service
   sudo systemctl stop docker
-
-  # Create Docker directory on NFS share if it doesn't exist
-  if [ ! -d "$DOCKER_DATA_DIR" ]; then
-    sudo mkdir -p "$DOCKER_DATA_DIR"
-  fi
-
-  # Set ownership and permissions on the Docker directory
-  sudo chown -R $DOCKER_USER:$DOCKER_USER "$DOCKER_DATA_DIR"
-  sudo chmod -R 755 "$DOCKER_DATA_DIR"
 
   # Move existing Docker data to NFS share (optional)
   if [ -d "/var/lib/docker" ]; then
