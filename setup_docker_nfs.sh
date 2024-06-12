@@ -87,4 +87,4 @@ configure_docker() {
 # Execute functions
 install_packages
 mount_nfs_share
-configure_docker
+#configure_docker

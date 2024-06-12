@@ -1,0 +1,4 @@
+ip a
+sudo vi /etc/netplan/00-installer-config.yaml
+# change ip
+sudo netplan apply
