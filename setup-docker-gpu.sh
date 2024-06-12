@@ -38,4 +38,4 @@ configure_docker_gpu
 
 # Verify the installation
 echo "Docker GPU setup complete. Verifying installation..."
-docker run --rm --gpus all nvidia/cuda:11.0-base nvidia-smi
+docker run --rm --gpus all nvidia/cuda:11.0.3-base-ubuntu20.04 nvidia-smi
