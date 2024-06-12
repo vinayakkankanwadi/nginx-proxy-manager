@@ -25,7 +25,7 @@ services:
     depends_on:
       - db
     networks:
-      - default
+      - reverse-proxy
 
   db:
     image: 'jc21/mariadb-aria:latest'
@@ -39,9 +39,8 @@ services:
     volumes:
       - /mnt/nginx-proxy-manager/mysql:/var/lib/mysql
     networks:
-      - default
+      - reverse-proxy
 
 networks:
-  default:
+  reverse-proxy:
     external: true
-      name: reverse-proxy
