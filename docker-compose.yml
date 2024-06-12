@@ -20,8 +20,8 @@ services:
       # Uncomment this if IPv6 is not enabled on your host
       # DISABLE_IPV6: 'true'
     volumes:
-      - /opt/nginx-proxy-manager/data:/data
-      - /opt/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
+      - /mnt/nginx-proxy-manager/data:/data
+      - /mnt/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
     depends_on:
       - db
 
@@ -35,7 +35,7 @@ services:
       MYSQL_PASSWORD: 'npm'
       MARIADB_AUTO_UPGRADE: '1'
     volumes:
-      - /opt/nginx-proxy-manager/mysql:/var/lib/mysql
+      - /mnt/nginx-proxy-manager/mysql:/var/lib/mysql
 
 networks:
   default:
