@@ -45,6 +45,8 @@ services:
     tty: true
     restart: unless-stopped
     environment:
+      - PUID=1000
+      - PGID=1000
       - OLLAMA_KEEP_ALIVE=24h
       - OLLAMA_HOST=0.0.0.0
     networks:
