@@ -1,22 +1,22 @@
 services:
-  ollama-webui:
-    image: ghcr.io/open-webui/open-webui:main
-    container_name: ollama-webui
-    volumes:
-      - /mnt/ollama/ollama-webui:/app/backend/data
-    depends_on:
-      - ollama
-    ports:
-      - "3000:8080"
-    environment: # https://docs.openwebui.com/getting-started/env-configuration#default_models
-      - OLLAMA_BASE_URLS=http://host.docker.internal:11434 #comma separated ollama hosts
-      - WEBUI_NAME=AAUNO
-      - WEBUI_SECRET_KEY=aauno
-    extra_hosts:
-      - host.docker.internal:host-gateway
-    restart: unless-stopped
-    networks:
-      - ollama
+  # ollama-webui:
+  #   image: ghcr.io/open-webui/open-webui:main
+  #   container_name: ollama-webui
+  #   volumes:
+  #     - /mnt/ollama/ollama-webui:/app/backend/data
+  #   depends_on:
+  #     - ollama
+  #   ports:
+  #     - "3000:8080"
+  #   environment: # https://docs.openwebui.com/getting-started/env-configuration#default_models
+  #     - OLLAMA_BASE_URLS=http://host.docker.internal:11434 #comma separated ollama hosts
+  #     - WEBUI_NAME=AAUNO
+  #     - WEBUI_SECRET_KEY=aauno
+  #   extra_hosts:
+  #     - host.docker.internal:host-gateway
+  #   restart: unless-stopped
+  #   networks:
+  #     - ollama
 
   ollama:
     image: ollama/ollama:latest
