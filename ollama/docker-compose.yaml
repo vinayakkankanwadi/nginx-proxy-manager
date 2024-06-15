@@ -24,7 +24,7 @@ services:
     ports:
       - "11434:11434"
     volumes:
-      - /mnt/ollama/ollama:/root/.ollama
+      - /mnt/ollama:/root/.ollama
     pull_policy: always
     tty: true
     restart: unless-stopped
