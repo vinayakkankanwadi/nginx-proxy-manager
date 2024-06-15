@@ -4,6 +4,7 @@ services:
     command: -H unix:///var/run/docker.sock    
     container_name: portainer
     ports:
+      - "9000:9000"
       - "9443:9443"
     restart: unless-stopped
     security_opt:
