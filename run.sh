@@ -85,7 +85,7 @@ if [ "$1" == "cleanup" ]; then
     
     remove_directory "$MOUNT_DIR"
     remove_docker_network "$DOCKER_NETWORK"
-    remove_docker_volume "$DOCKER_VOLUME"
+    #remove_docker_volume "$DOCKER_VOLUME"
   done
   echo "Cleanup complete."
 else
