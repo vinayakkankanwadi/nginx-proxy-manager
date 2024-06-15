@@ -45,7 +45,7 @@ networks:
   ollama:
     name: ollama
     driver: bridge
-    external: true
+    external: false
 
 volumes:
   ollama:
