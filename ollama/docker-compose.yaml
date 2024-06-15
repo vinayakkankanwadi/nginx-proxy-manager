@@ -24,7 +24,7 @@ services:
     ports:
       - "11434:11434"
     volumes:
-      - /mnt/ollama:/root/.ollama
+      - ollama:/root/.ollama
     pull_policy: always
     tty: true
     restart: unless-stopped
@@ -46,3 +46,12 @@ networks:
     name: ollama
     driver: bridge
     external: true
+
+volumes:
+  ollama:
+    external: true
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: "addr=192.168.0.233,vers=4,rw"
+      device: ":/mnt/ollama"
