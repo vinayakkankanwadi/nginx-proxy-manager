@@ -18,4 +18,4 @@ networks:
   portainer:
     name: portainer
     driver: bridge
-    external: true
+    external: false

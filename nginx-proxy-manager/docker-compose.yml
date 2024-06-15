@@ -44,4 +44,4 @@ networks:
   nginx-proxy-manager:
     name: nginx-proxy-manager
     driver: bridge
-    external: true
+    external: false
