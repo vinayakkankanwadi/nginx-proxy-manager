@@ -48,6 +48,8 @@ networks:
 
 volumes:
   ollama:
+    name: ollama
+    external: true
     driver_opts:
       type: "nfs"
       o: "addr=192.168.0.233,vers=4,rw"
