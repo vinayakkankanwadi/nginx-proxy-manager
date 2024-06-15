@@ -1,3 +1,19 @@
+volumes:
+  #/volume1/nfs/ollama
+  ollama:
+    name: ollama
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: "addr=192.168.0.233,rw,nolock,hard,nointr,nfsvers=4"
+      device: ":/volume1/nfs/ollama"
+
+networks:
+  ollama:
+    name: ollama
+    driver: bridge
+    external: false
+
 services:
   # ollama-webui:
   #   image: ghcr.io/open-webui/open-webui:main
@@ -24,7 +40,7 @@ services:
     ports:
       - "11434:11434"
     volumes:
-      - ollama:/root/.ollama
+      - ollama:/root/.ollama:rw
     pull_policy: always
     tty: true
     restart: unless-stopped
@@ -40,18 +56,3 @@ services:
             - driver: nvidia
               count: 1
               capabilities: [gpu]
-
-networks:
-  ollama:
-    name: ollama
-    driver: bridge
-    external: false
-
-volumes:
-  ollama:
-    name: ollama
-    driver: local
-    driver_opts:
-      type: "nfs"
-      o: "addr=192.168.0.233,vers=4,rw"
-      device: ":/volume1/nfs"
