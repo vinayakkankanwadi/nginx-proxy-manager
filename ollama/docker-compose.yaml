@@ -49,7 +49,6 @@ networks:
 
 volumes:
   ollama:
-    external: true
     driver: local
     driver_opts:
       type: "nfs"
