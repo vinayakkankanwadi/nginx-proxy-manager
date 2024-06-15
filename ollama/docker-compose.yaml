@@ -49,8 +49,9 @@ networks:
 
 volumes:
   ollama:
+    name: ollama
     driver: local
     driver_opts:
       type: "nfs"
       o: "addr=192.168.0.233,vers=4,rw"
-      device: ":/mnt/ollama"
+      device: ":/volume1/nfs"
