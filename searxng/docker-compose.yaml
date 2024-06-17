@@ -2,7 +2,7 @@ services:
   searxng:
     image: searxng/searxng:latest
     container_name: searxng
-		environment:
+    environment:
     - SEARXNG_BASE_URL=https://searx.aauno.io/
     ports:
       - "8080:8080"
