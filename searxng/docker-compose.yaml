@@ -6,4 +6,17 @@ services:
       - "8080:8080"
     volumes:
       - /nfs/searxng:/etc/searxng
-    restart: always
+    restart: unless-stopped
+    networks:
+      - searxng
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETGID
+      - SETUID
+      - DAC_OVERRIDE
+
+networks:
+  searxng:
+    external: true
