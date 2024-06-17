@@ -5,17 +5,10 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - /nfs/searxng:/etc/searxng
+      - /nfs/searxng:/etc/searxng:rw
     restart: unless-stopped
     networks:
       - searxng
-    cap_drop:
-      - ALL
-    cap_add:
-      - CHOWN
-      - SETGID
-      - SETUID
-      - DAC_OVERRIDE
 
 networks:
   searxng:
