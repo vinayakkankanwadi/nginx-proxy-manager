@@ -3,7 +3,7 @@ services:
     image: searxng/searxng:latest
     container_name: searxng
     environment:
-    - SEARXNG_BASE_URL=https://searx.aauno.io/
+      - SEARXNG_BASE_URL=https://${SEARXNG_HOSTNAME:-localhost}/
     ports:
       - "8080:8080"
     volumes:
@@ -11,6 +11,13 @@ services:
     restart: unless-stopped
     networks:
       - searxng
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETGID
+      - SETUID
+      - DAC_OVERRIDE
 
 networks:
   searxng:
