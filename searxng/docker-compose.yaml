@@ -3,7 +3,7 @@ services:
     image: searxng/searxng:latest
     container_name: searxng
     ports:
-      - "8080:8080"
+      - "8090:8080"
     volumes:
       - /nfs/searxng:/etc/searxng:rw
     restart: unless-stopped
