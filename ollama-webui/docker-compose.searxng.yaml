@@ -1,9 +1,0 @@
-services:
-  searxng:
-    image: searxng/searxng:latest
-    container_name: searxng
-    ports:
-      - "8090:8080"
-    volumes:
-      - ./searxng:/etc/searxng
-    restart: always
