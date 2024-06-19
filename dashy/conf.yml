@@ -1,7 +1,7 @@
 ---
 # Page meta info, like heading, footer text and nav links
 pageInfo:
-  title: Dashy
+  title: AAUNO
   description: Welcome to your new dashboard!
   navLinks:
   - title: GitHub
@@ -15,33 +15,180 @@ appConfig:
 
 # Main content - An array of sections, each containing an array of items
 sections:
-- name: Getting Started
+- name: Monitoring
   icon: fas fa-rocket
   items:
-  - title: Dashy Live
-    description: Development a project management links for Dashy
-    icon: https://i.ibb.co/qWWpD0v/astro-dab-128.png
-    url: https://live.dashy.to/
-    target: newtab
+  - title: Dashy
+    description: Dashy
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/dashy.png
+    url: https://192.168.0.231:4000/
+  - title: Promotheus
+    description: Promotheus
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/prometheus.png
+    url: https://192.168.0.200:8006/
+  - title: Alertmanager
+    description: Alertmanager
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/alertmanager.png
+    url: https://192.168.0.200:8006/
+  - title: Grafana
+    description: Grafana
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/grafana.png
+    url: https://192.168.0.200:8006/
+  - title: Portainer
+    description: Portainer
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/portainer.png
+    url: http://192.168.0.231:9000/
+- name: Devices
+  icon: fas fa-rocket
+  items:
+  - title: Proxmox
+    description: Hypervisor
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/proxmox-light.png
+    url: https://192.168.0.200:8006/
+  - title: Synology
+    description: Storage
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/synology-drive-server.png
+    url: http://192.168.0.233:5000/
+  - title: Telstra
+    description: IPS
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/asus-router.png
+    url: http://192.168.0.1/
+- name: Hosting
+  icon: fas fa-rocket
+  items:
+  - title: Cloudflare
+    description: Network Services
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/cloudflare.png
+    url: https://www.cloudflare.com/
+  - title: Nginx Proxy Manager
+    description: Nginx Proxy Manager
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/nginx-proxy-manager.png
+    url: http://192.168.0.231:40081/
+  - title: AWS
+    description: Amazon Web Services
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/amazon-light.png
+    url: https://www.aws.com/
+  - title: GoDaddy
+    description: GoDaddy
+    icon: https://upload.wikimedia.org/wikipedia/commons/d/da/GoDaddy_Logo_-_The_GO.svg
+    url: https://www.godaddy.com/
+- name: Private Services
+  icon: fas fa-rocket
+  items:
+  - title: AAUNO
+    description: Platform for AI
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/open-webui-light.png
+    url: https://aauno.io/
+  - title: Searxng
+    description: Search Engine
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/searxng.png
+    url: https://searx.aauno.io/
+- name: Public Services
+  icon: fas fa-rocket
+  items:
   - title: GitHub
     description: Source Code, Issues and Pull Requests
-    url: https://github.com/lissy93/dashy
-    icon: favicon
-  - title: Docs
-    description: Configuring & Usage Documentation
-    provider: Dashy.to
-    icon: far fa-book
-    url: https://dashy.to/docs
-  - title: Showcase
-    description: See how others are using Dashy
-    url: https://github.com/Lissy93/dashy/blob/master/docs/showcase.md
-    icon: far fa-grin-hearts
-  - title: Config Guide
-    description: See full list of configuration options
-    url: https://github.com/Lissy93/dashy/blob/master/docs/configuring.md
-    icon: fas fa-wrench
-  - title: Support
-    description: Get help with Dashy, raise a bug, or get in contact
-    url: https://github.com/Lissy93/dashy/blob/master/.github/SUPPORT.md
-    icon: far fa-hands-helping
-  
+    url: https://github.com/vinayakkankanwadi
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/github-light.png
+- name: Public Applications
+  icon: fas fa-rocket
+  items:
+  - title: Handbrake
+    description: Handbrake
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/handbrake.png
+    url: https://handbrake.fr/
+- name: Externals
+  icon: fas fa-rocket
+  items:
+  - title: OpenAI
+    description: Chat GPT
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/openai-light.png
+    url: https://openai.com/
+  - title: Ollama
+    description: LLM
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/ollama.png
+    url: https://www.ollama.com/
+  - title: Huggingface
+    description: AI Community
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/hugging-face.png
+    url: https://huggingface.co/
+  - title: AnythingLLM
+    description: AnythiongLLM
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/anything-llm-light.png
+    url: https://useanything.com/
+  - title: Midjourney
+    description: Midjourney
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/midjourney-light.png
+    url: https://midjourney.com/
+- name: Databases
+  icon: fas fa-rocket
+  items:
+  - title: Mongodb
+    description: Mongodb
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/mongodb.png
+    url: https://www.mongodb.com/
+  - title: MySQL 
+    description: MySQL 
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/mysql.png
+    url: https://www.mysql.com/
+  - title: PostgreSQL
+    description: PostgreSQL
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/postgres.png
+    url: https://www.postgresql.org/
+- name: Socials
+  icon: fas fa-rocket
+  items:
+  - title: Discord
+    description: Discord
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/discord.png
+    url: https://discord.com/
+  - title: Slack
+    description: Slack
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/slack.png
+    url: https://slack.com/
+  - title: Youtube
+    description: Youtube
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/youtube.png
+    url: https://youtube.com/
+- name: Tools
+  icon: fas fa-rocket
+  items:
+  - title: Ansible
+    description: Ansible
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/ansible.png
+    url: https://www.ansible.com/
+  - title: ArgoCD
+    description: ArgoCD
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/argocd.png
+    url: https://www.argocd.com/
+  - title: Authentik
+    description: Authentik
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/authentik-light.png
+    url: https://www.authentik.com/
+  - title: Docker
+    description: Docker
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/docker-moby.png
+    url: https://www.docker.com/
+  - title: Elastic
+    description: Elastic
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/elastic.png
+    url: https://www.elastic.com/
+  - title: Electron
+    description: Electron
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/electron.png
+    url: https://www.electron.com/
+  - title: Logstash
+    description: Logstash
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/logstash.png
+    url: https://logstash.com/
+  - title: Terraform
+    description: Terraform
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/terraform.png
+    url: https://terraform.com/
+- name: Games
+  icon: fas fa-rocket
+  items:
+  - title: Minecraft
+    description: Minecraft
+    icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/minecraft.png
+    url: https://www.minecraft.com/
